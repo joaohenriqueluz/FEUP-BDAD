@@ -11,110 +11,108 @@ DROP TABLE IF EXISTS Animal;
 
 
 CREATE TABLE Organization(
-	idOrganization INTEGER PRIMARY KEY,
-	name		   CHAR(30),
-	street		   CHAR(25),
-	postalCodeRegion INTEGER,
-	postalCodeCity	 INTEGER,
-	phone			 INTEGER UNIQUE,
-	nif				 INTEGER UNIQUE,
-	foundationDate   DATE
+	idOrganization 		integer PRIMARY KEY,
+	name		   		char(30),
+	street		   		char(25),
+	postalCodeRegion 	integer,
+	postalCodeCity	 	integer,
+	phone			 	integer UNIQUE,
+	nif				 	integer UNIQUE,
+	foundationdate   	date
 	);
 
 
 CREATE TABLE Vet(
-	idVet INTEGER PRIMARY KEY,
-	name		   CHAR(30),
-	street		   CHAR(25),
-	postalCodeRegion INTEGER,
-	postalCodeCity	 INTEGER,
-	phone			 INTEGER UNIQUE,
-	prices			 REAL,
-	discounts   	 REAL
+	idVet 				integer PRIMARY KEY,
+	name		   		char(30),
+	street		  	 	char(25),
+	postalCodeRegion 	integer,
+	postalCodeCity	 	integer,
+	phone			 	integer UNIQUE,
+	prices			 	REAL,
+	discounts   	 	REAL
 	);
 
 
 CREATE TABLE OrganizationVet(
-	idOrganization REFERENCES Organization(idOrganization),
-	idVet REFERENCES Vet(idVet)
+	idOrganization 		integer REFERENCES Organization,
+	idVet 				integer REFERENCES Vet
 	);
 
 
 CREATE TABLE Person(
-	idPerson INTEGER PRIMARY KEY,
-	name		   CHAR(30),
-	cc 			   INTEGER UNIQUE,
-	street		   CHAR(25),
-	postalCodeRegion INTEGER,  
-	postalCodeCity	 INTEGER,
-	phone			 INTEGER UNIQUE,
-	gender			 TEXT,
-	birthday		 DATE
+	idPerson 			integer PRIMARY KEY,
+	name		  	 	char(30),
+	cc 			   		integer UNIQUE,
+	street		   		char(25),
+	postalCodeRegion 	integer,  
+	postalCodeCity	 	integer,
+	phone			 	integer UNIQUE,
+	gender			 	text,
+	birthday		 	date
 	);
 
 
 CREATE TABLE Contributor(
-	idPerson REFERENCES Person(idPerson),
-	job 			   TEXT,
-	nif				   INTEGER UNIQUE,
-	associationDate    DATE,
-	lastAnnuityPayment DATE,
+	idPerson 			integer REFERENCES Person,
+	job 			   	text,
+	nif				   	integer UNIQUE,
+	associationdate    	date,
+	lastAnnuityPayment 	date,
 	);
 
 
 CREATE TABLE Volunteer(
-	idPerson REFERENCES Person(idPerson),
-	weeklyHours		INTEGER,
-	workArea		TEXT
+	idPerson 			integer REFERENCES Person,
+	weeklyHours			integer,
+	workArea			text
 	);
 
 
 CREATE TABLE Adopter(
-	idPerson REFERENCES Person(idPerson),
-	adoptionDate	DATE,
-	nif		INTEGER UNIQUE
+	idPerson 			integer REFERENCES Person,
+	adoptiondate		date,
+	nif					integer UNIQUE
 	);
 
 
 CREATE TABLE OrganizationContributor(
-	idOrganization REFERENCES Organization(idOrganization),
-	idPerson REFERENCES Contributor(idPerson)
+	idOrganization 		integer REFERENCES Organization,
+	idPerson 			integer REFERENCES Contributor
 	);
 
 
 CREATE TABLE Donation(
-	idDonation 		REAL PRIMARY KEY,
-	type		    TEXT,
-	amount			REAL,
-	frequency		INTEGER,
-	idOrganization REFERENCES Organization(idOrganization),
-	idPerson REFERENCES Person(idPerson)
+	idDonation 			REAL PRIMARY KEY,
+	type		    	text,
+	amount				REAL,
+	frequency			integer,
+	idOrganization 		integer REFERENCES Organization,
+	idPerson 			integer REFERENCES Person
 	);
 
 
 CREATE TABLE AnimalShelter(
-	idAnimalShelter INTEGER PRIMARY KEY,
-	Animaltype		CHAR(3),
-	street			TEXT,
-	postalCodeRegion INTEGER,
-	postalCodeCity   INTEGER,
-	phone		INTEGER UNIQUE,
-	idOrganization REFERENCES Organization(idOrganization)
+	idAnimalShelter	 	integer PRIMARY KEY,
+	Animaltype			char(3),
+	street				text,
+	postalCodeRegion 	integer,
+	postalCodeCity   	integer,
+	phone				integer UNIQUE,
+	idOrganization 		integer REFERENCES Organization
 	);
 
 
 CREATE TABLE AnimalShelter(
-	idAnimal INTEGER PRIMARY KEY,
-	name TEXT,
-	arrivalDate DATE,
-	size TEXT,
-	color TEXT,
-	gender CHAR(1),
-	age INTEGER,
-	
-	idOrganization REFERENCES Organization(idOrganization)
+	idAnimal 			integer PRIMARY KEY,
+	name 				text,
+	arrivaldate 		date,
+	size 				text,
+	color 				text,
+	gender 				char(1),
+	age 				integer,
+	sterilized			boolean,
+	health				text,
+	idAnimalShelter 	integer REFERENCES AnimalShelter,
+	idPerson 			integer REFERENCES Person
 	);
-
-
-
-
