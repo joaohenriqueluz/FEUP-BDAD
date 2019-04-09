@@ -5,15 +5,15 @@ DROP TABLE IF EXISTS Contributor;
 DROP TABLE IF EXISTS Volunteer;
 DROP TABLE IF EXISTS Adopter;
 DROP TABLE IF EXISTS Donation;
-DROP TABLE IF EXISTS Guardian;
+DROP TABLE IF EXISTS Guardian; 
 DROP TABLE IF EXISTS AnimalShelter;
 DROP TABLE IF EXISTS Animal;
 
 
-CREATE TABLE Organization(
+CREATE TABLE Organization (
 	idOrganization 		integer PRIMARY KEY,
-	name		   		char(30),
-	street		   		char(25),
+	name		   		text,
+	street		   		text,
 	postalCodeRegion 	integer,
 	postalCodeCity	 	integer,
 	phone			 	integer UNIQUE,
@@ -22,67 +22,68 @@ CREATE TABLE Organization(
 	);
 
 
-CREATE TABLE Vet(
+CREATE TABLE Vet (
 	idVet 				integer PRIMARY KEY,
-	name		   		char(30),
-	street		  	 	char(25),
+	name		   		text NOT NULL,
+	street		  	 	text,
 	postalCodeRegion 	integer,
 	postalCodeCity	 	integer,
 	phone			 	integer UNIQUE,
-	prices			 	REAL,
-	discounts   	 	REAL
+	prices			 	real CHECK(prices > 0),
+	discounts   	 	real CHECK(discounts >=0)
 	);
 
 
-CREATE TABLE OrganizationVet(
+CREATE TABLE OrganizationVet (
 	idOrganization 		integer REFERENCES Organization,
 	idVet 				integer REFERENCES Vet
 	);
 
 
-CREATE TABLE Person(
+CREATE TABLE Person (
 	idPerson 			integer PRIMARY KEY,
-	name		  	 	char(30),
-	cc 			   		integer UNIQUE,
-	street		   		char(25),
+	name		  	 	text NOT NULL,
+	cc 			   		integer UNIQUE NOT NULL,
+	street		   		text,
 	postalCodeRegion 	integer,  
 	postalCodeCity	 	integer,
 	phone			 	integer UNIQUE,
-	gender			 	text,
+	gender			 	text CHECK(gender ='female' or gender = 'male'),
 	birthday		 	date
 	);
 
 
-CREATE TABLE Contributor(
+CREATE TABLE Contributor (
 	idPerson 			integer REFERENCES Person,
 	job 			   	text,
 	nif				   	integer UNIQUE,
 	associationdate    	date,
 	lastAnnuityPayment 	date,
+	CHECK(lastAnnuityPayment  > associationdate) 
 	);
 
 
-CREATE TABLE Volunteer(
+CREATE TABLE Volunteer (
 	idPerson 			integer REFERENCES Person,
-	weeklyHours			integer,
+	weeklyHours			integer CHECK(weeklyHours > 0),
 	workArea			text
 	);
 
 
-CREATE TABLE Adopter(
+CREATE TABLE Adopter (
 	idPerson 			integer REFERENCES Person,
 	adoptiondate		date,
 	nif					integer UNIQUE
 	);
 
 
-CREATE TABLE OrganizationContributor(
+CREATE TABLE OrganizationContributor (
 	idOrganization 		integer REFERENCES Organization,
 	idPerson 			integer REFERENCES Contributor
 	);
 
 
-CREATE TABLE Donation(
+CREATE TABLE Donation (
 	idDonation 			REAL PRIMARY KEY,
 	type		    	text,
 	amount				REAL,
@@ -92,9 +93,9 @@ CREATE TABLE Donation(
 	);
 
 
-CREATE TABLE AnimalShelter(
+CREATE TABLE AnimalShelter (
 	idAnimalShelter	 	integer PRIMARY KEY,
-	Animaltype			char(3),
+	Animaltype			text,
 	street				text,
 	postalCodeRegion 	integer,
 	postalCodeCity   	integer,
@@ -103,16 +104,17 @@ CREATE TABLE AnimalShelter(
 	);
 
 
-CREATE TABLE AnimalShelter(
+CREATE TABLE Animal (
 	idAnimal 			integer PRIMARY KEY,
 	name 				text,
 	arrivaldate 		date,
 	size 				text,
 	color 				text,
-	gender 				char(1),
+	gender 				text,
 	age 				integer,
 	sterilized			boolean,
 	health				text,
 	idAnimalShelter 	integer REFERENCES AnimalShelter,
 	idPerson 			integer REFERENCES Person
 	);
+
