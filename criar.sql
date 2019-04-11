@@ -61,9 +61,9 @@ CREATE TABLE Contributor (
 	idPerson 			integer REFERENCES Person,
 	job 			   	text,
 	nif				   	integer UNIQUE,
-	associationdate    	date,
+	associationDate    	date,
 	lastAnnuityPayment 	date,
-	CHECK(lastAnnuityPayment  > associationdate) 
+	CHECK(lastAnnuityPayment  > associationDate) 
 	);
 
 
@@ -113,7 +113,7 @@ CREATE TABLE AnimalShelter (
 
 CREATE TABLE AnimalShelterVolunteerWorkArea (
 	idAnimalShelter		integer REFERENCES AnimalShelter,
-	idAnimal 			integer	REFERENCES Animal,
+	idPerson 			integer	REFERENCES Volunteer,
 	idWorkArea			integer REFERENCES WorkArea
 );
 
@@ -121,14 +121,14 @@ CREATE TABLE Animal (
 	idAnimal 			integer PRIMARY KEY,
 	name 				text,
 	arrivaldate 		date,
-	size 				text,
+	size 				text CHECK(size = 'large' or size = 'medium' or size = 'small'),
 	color 				text,
-	gender 				text,
-	age 				integer,
+	gender 				text CHECK(gender ='female' or gender = 'male'),
+	bithDate 			date,
 	sterilized			boolean,
 	health				text,
 	idAnimalShelter 	integer REFERENCES AnimalShelter,
-	idPerson 			integer REFERENCES Person,
+	CHECK(arrivaldate > bithDate)
 	);
 
 CREATE TABLE AnimalVet (
@@ -138,6 +138,6 @@ CREATE TABLE AnimalVet (
 
 CREATE TABLE Guardian (
 	idAnimal 			integer	REFERENCES Animal,
-	idPerson			integer REFERENCES Person
+	idPerson			integer REFERENCES Person,
 	monthlyAllowance	real CHECK (monthlyAllowance > 0)
 );
