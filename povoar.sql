@@ -8,7 +8,7 @@ INSERT INTO Organization (
     postalCodeCity, 
     phone, 
     nif, 
-    foumdationDate )
+    foundationDate )
 
 VALUES
     (1, 
@@ -29,7 +29,7 @@ INSERT INTO Vet (
     postalCodeCity,
     phone,
     prices,
-    discount )
+    discounts )
 
 VALUES
     (1,
@@ -261,7 +261,7 @@ VALUES
 
 
 INSERT INTO Contributor(
-    idPerson,
+    idContributor,
     job,
     nif,
     associationDate,
@@ -270,25 +270,25 @@ INSERT INTO Contributor(
 VALUES
    (1,
     'Nurse',
-    244354465,
+    244354065,
     2010-10-03,
     2018-11-07),
    
    (6,
     'Teacher',
-    234536245,
+    2306436145,
     2015-04-22,
     2018-01-22),
 
    (7,
     'Engineer',
-    234536245,
+    239832245,
     2015-04-22,
     2018-01-22);
 
 
 INSERT INTO Volunteer (
-    idPerson,
+    idVolunteer,
     weeklyHours )
 
 VALUES
@@ -314,7 +314,7 @@ VALUES
     'Animal rescue');
 
 INSERT INTO Adopter (
-    idPerson,
+    idAdopter,
     nif )
 
 VALUES
@@ -328,9 +328,9 @@ VALUES
     234567745);
    
    
-INSERT INTO OrganizationContributer (
+INSERT INTO OrganizationContributor (
     idOrganization,
-    idPerson )
+    idContributor )
 
 VALUES
     (1, 1),
@@ -404,7 +404,7 @@ VALUES
 
 INSERT INTO AnimalShelterVolunteerWorkArea (
     idAnimalShelter,
-    idPerson,
+    idVolunteer,
     idWorkArea )
 
 VALUES
@@ -437,7 +437,7 @@ VALUES
     'black',
     'female',
     2018-01-01,
-    true,
+    1,
     'FIV',
     1),
 
@@ -448,7 +448,7 @@ VALUES
     'black',
     'male',
     2018-07-01,
-    true,
+    1,
     '',
     1),
     
@@ -459,7 +459,7 @@ VALUES
     '',
     'female',
     2018-01-01,
-    true,
+    1,
     'FIV',
     1),
 
@@ -470,7 +470,7 @@ VALUES
     'yellow',
     'female',
     2018-05-01,
-    true,
+    1,
     '',
     1),
 
@@ -481,7 +481,7 @@ VALUES
     'white',
     'female',
     2012-01-22,
-    true,
+    1,
     'leucemia',
     1),
 
@@ -492,7 +492,7 @@ VALUES
     'white',
     'male',
     2018-09-22,
-    true,
+    1,
     '',
     1),
     
@@ -503,7 +503,7 @@ VALUES
     'brown',
     'female',
     2018-05-21,
-    true,
+    1,
     '',
     1),
 
@@ -514,7 +514,7 @@ VALUES
     'yellow',
     'male',
     2007-06-10,
-    true,
+    1,
     'Kidney failure',
     1),
 
@@ -525,7 +525,7 @@ VALUES
     'black',
     'female',
     2014-01-24,
-    true,
+    1,
     '',
     2),
 
@@ -536,7 +536,7 @@ VALUES
     'white',
     'male',
     2019-02-24,
-    false,
+    0,
     '',
     2),
 
@@ -547,7 +547,7 @@ VALUES
     'white',
     'female',
     2019-02-24,
-    false,
+    0,
     '',
     2),
 
@@ -558,7 +558,7 @@ VALUES
     'yellow',
     'male',
     2016-11-12,
-    true,
+    1,
     '',
     2),
 
@@ -569,7 +569,7 @@ VALUES
     'brown',
     'male',
     2013-06-17,
-    true,
+    0,
     '',
     2),
 
@@ -580,7 +580,7 @@ VALUES
     'brown',
     'female',
     2018-03-10,
-    true,
+    1,
     '',
     2),
 
@@ -591,7 +591,7 @@ VALUES
     'brown',
     'female',
     2005-01-24,
-    true,
+    1,
     '',
     2);
 

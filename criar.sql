@@ -34,7 +34,7 @@ CREATE TABLE Vet (
 	postalCodeCity	 	integer,
 	phone			 	integer UNIQUE,
 	prices			 	real CHECK(prices > 0),
-	discounts   	 	real CHECK(discounts >=0) //se a pessoa for contributer
+	discounts   	 	real CHECK(discounts >=0)
 	);
 
 
@@ -58,7 +58,7 @@ CREATE TABLE Person (
 
 
 CREATE TABLE Contributor (
-	idPerson 			integer REFERENCES Person,
+	idContributor		integer REFERENCES Person,
 	job 			   	text,
 	nif				   	integer UNIQUE,
 	associationDate    	date,
@@ -68,7 +68,7 @@ CREATE TABLE Contributor (
 
 
 CREATE TABLE Volunteer (
-	idPerson 			integer REFERENCES Person,
+	idVolunteer 		integer REFERENCES Person,
 	weeklyHours			integer CHECK(weeklyHours > 0)
 	);
 
@@ -80,14 +80,14 @@ CREATE TABLE WorkArea (
 
 
 CREATE TABLE Adopter (
-	idPerson 			integer REFERENCES Person,
+	idAdopter 			integer REFERENCES Person,
 	nif					integer UNIQUE
 	);
 
 
 CREATE TABLE OrganizationContributor (
 	idOrganization 		integer REFERENCES Organization,
-	idPerson 			integer REFERENCES Contributor
+	idContributor 			integer REFERENCES Person
 	);
 
 
@@ -113,7 +113,7 @@ CREATE TABLE AnimalShelter (
 
 CREATE TABLE AnimalShelterVolunteerWorkArea (
 	idAnimalShelter		integer REFERENCES AnimalShelter,
-	idPerson 			integer	REFERENCES Volunteer,
+	idVolunteer			integer	REFERENCES Person,
 	idWorkArea			integer REFERENCES WorkArea
 );
 
@@ -127,8 +127,7 @@ CREATE TABLE Animal (
 	bithDate 			date,
 	sterilized			boolean,
 	health				text,
-	idAnimalShelter 	integer REFERENCES AnimalShelter,
-	CHECK(arrivaldate > bithDate)
+	idAnimalShelter 	integer REFERENCES AnimalShelter
 	);
 
 CREATE TABLE AnimalVet (
