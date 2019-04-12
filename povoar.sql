@@ -13,12 +13,12 @@ INSERT INTO Organization (
 VALUES
     (1, 
     'Senhores Bichinhos', 
-    'Rua Pedro Magalhães', 
+    'Rua Pedro Magalhães, 402',
     4400, 
     120, 
     916667241, 
     122145466, 
-    1980-10-09);
+    1980-09-10);
 
 
 INSERT INTO Vet (
@@ -33,8 +33,8 @@ INSERT INTO Vet (
 
 VALUES
     (1,
-    'Clínica Veterinária da Quinta das Rosas',
-    'Rua das Searas',
+    'Clínica Veterinária Quinta das Rosas',
+    'Rua das Searas, 100',
     4430,
     280,
     965548877,
@@ -42,8 +42,8 @@ VALUES
     20),
 
     (2,
-    'Clinica D.PedroV',
-    'Rua D. Pedro v',
+    'Clinica D.Pedro V',
+    'Rua D. Pedro V, 10',
     4400,
     560,
     935765546,
@@ -52,11 +52,13 @@ VALUES
 
     (3,
     'Clínica Veterinária da Galiza',
-    'Rua da Galiza',
+    'Rua da Galiza, 342',
     4000,
     290,
-    916775489, 20,
+    916775489,
+    20,
     15);
+
 
 INSERT INTO OrganizationVet (
     idOrganization,
@@ -66,6 +68,7 @@ VALUES
     (1, 1),
     (1, 2),
     (1, 3);
+
 
 INSERT INTO Person (
     idPerson,
@@ -83,7 +86,7 @@ VALUES
     'Maria Albertina',
     67996675,
     'female',
-    'Rua das Rosas',
+    'Rua das Rosas, 39',
     4400,
     178,
     915743355,
@@ -93,7 +96,7 @@ VALUES
     'Mafalda Santos',
     678968725,
     'female',
-    'Rua Antonio Gomes',
+    'Rua Antonio Gomes, 99',
     4400,
     125,
     915613946,
@@ -103,7 +106,7 @@ VALUES
     'João Luz',
     78943679,
     'male',
-    'Rua Manuel Salgueiral',
+    'Rua Manuel Salgueiral, 23',
     4400,
     120,
     935679546,
@@ -113,7 +116,7 @@ VALUES
     'Diogo Silva',
     27958588,
     'male',
-    'Rua de Sao Tome',
+    'Rua de São Tome, 11',
     4430,
     222,
     937247899,
@@ -123,17 +126,17 @@ VALUES
     'Cristina Reis',
     87488579,
     'female',
-    'Rua de Canide Sul',
+    'Rua de Canide Sul, 32',
     4440,
     111,
     919945551,
     1968-08-13),
 
     (6,
-    'Joana carvalho',
+    'Joana Carvalho',
     3685567832,
     'female',
-    'Rua Aljubarrota',
+    'Rua Aljubarrota, 134',
     4400,
     231,
     915674433,
@@ -143,7 +146,7 @@ VALUES
     'Liliana Almeida',
     479055789,
     'female',
-    'Rua Timor',
+    'Rua Timor, 49',
     4400,
     343,
     915787765,
@@ -153,7 +156,7 @@ VALUES
     'Isabel Patricia',
     694455342,
     'female',
-    'Rua do Alecrim Monteiro',
+    'Rua do Alecrim Monteiro, 83',
     4000,
     112,
     916578855,
@@ -163,7 +166,7 @@ VALUES
     'Antonio Gabriel',
     8690066436,
     'male',
-    'Rua Marques Pereira',
+    'Rua Marques Pereira, 82',
     4300,
     677,
     965788644,
@@ -173,7 +176,7 @@ VALUES
     'José Gomes',
     92456621,
     'male',
-    'Rua da Rasa',
+    'Rua da Rasa, 932',
     4000,
     127,
     916788865,
@@ -183,7 +186,7 @@ VALUES
     'Luísa Maria',
     9275768908,
     'female',
-    'Rua Famalicão de cima',
+    'Rua Famalicão de Cima, 33',
     4400,
     800,
     915675545,
@@ -193,7 +196,7 @@ VALUES
     'Cesar Protetor',
     66522787,
     'male',
-    'Rua de Malorca',
+    'Rua de Malorca, 99',
     4300,
     098,
     967874466,
@@ -203,7 +206,7 @@ VALUES
     'David Dinis',
     12767382,
     'male',
-    'Rua Fernando Madeira',
+    'Rua Fernando Madeira, 854',
     4000,
     789,
     967077660,
@@ -213,7 +216,7 @@ VALUES
     'Marta Gomes',
     19897382,
     'female',
-    'Rua Diogo Cão',
+    'Rua Diogo Cão, 743',
     4600,
     019,
     917977660,
@@ -223,7 +226,7 @@ VALUES
     'Alexandre Carqueja',
     98123382,
     'male',
-    'Avenida da Boavista',
+    'Avenida da Boavista, 832',
     4000,
     694,
     919055460,
@@ -233,7 +236,7 @@ VALUES
     'Luís Fernandes',
     21467833,
     'male',
-    'Rua Dr Alberto Seabra',
+    'Rua Dr. Alberto Seabra, 54',
     4400,
     600,
     919099890,
@@ -243,7 +246,7 @@ VALUES
     'Soraia Daniela',
     43326733,
     'female',
-    'Rua Magalhães Silva',
+    'Rua Magalhães Silva, 85',
     4450,
     760,
     916778690,
@@ -253,7 +256,7 @@ VALUES
     'Baltazar Guimarães',
     91567733,
     'male',
-    'Travessa do Outeiro',
+    'Travessa do Outeiro, 748',
     4455,
     090,
     967879921,
@@ -262,25 +265,29 @@ VALUES
 
 INSERT INTO Contributor(
     idContributor,
+    id,
     job,
     nif,
     associationDate,
-    lastAnnuityPayment ) 
+    lastAnnuityPayment )
    
 VALUES
    (1,
+    1,
     'Nurse',
     244354065,
     2010-10-03,
     2018-11-07),
    
    (6,
+    2,
     'Teacher',
     2306436145,
     2015-04-22,
     2018-01-22),
 
    (7,
+    3,
     'Engineer',
     239832245,
     2015-04-22,
@@ -311,7 +318,8 @@ VALUES
     (3,
     'Peting'),
     (4,
-    'Animal rescue');
+    'Animal Rescuing');
+
 
 INSERT INTO Adopter (
     idAdopter,
@@ -327,7 +335,7 @@ VALUES
     (10,
     234567745);
    
-   
+
 INSERT INTO OrganizationContributor (
     idOrganization,
     idContributor )
@@ -348,7 +356,7 @@ INSERT INTO Donation (
 
 VALUES
     (1,
-    'Food (kg)',
+    'Food (Kg)',
     15,
     2,
     1,
@@ -362,7 +370,7 @@ VALUES
     14),
 
     (3,
-    'dog shampoo',
+    'Hygiene',
     3,
     2,
     1,
@@ -388,7 +396,7 @@ INSERT INTO AnimalShelter (
 VALUES
     (1,
     'cat',
-    'Rua das Amoras',
+    'Rua das Amoras, 23',
     4400,
     143,
     916756687,
@@ -396,11 +404,12 @@ VALUES
 
     (2,
     'dog',
-    'Rua Martins Almada',
+    'Rua Martins Almada, 95',
     4000,
     451,
     93900434,
     1);
+
 
 INSERT INTO AnimalShelterVolunteerWorkArea (
     idAnimalShelter,
@@ -408,13 +417,13 @@ INSERT INTO AnimalShelterVolunteerWorkArea (
     idWorkArea )
 
 VALUES
-    (1,2,2),
-    (1,2,4),
-    (2,3,1),
-    (2,3,3),
-    (1,4,2),
-    (1,5,3),
-    (2,12,4);
+    (1, 2, 2),
+    (1, 2, 4),
+    (2, 3, 1),
+    (2, 3, 3),
+    (1, 4, 2),
+    (1, 5, 3),
+    (2, 12, 4);
 
 
 INSERT INTO Animal (
@@ -424,7 +433,7 @@ INSERT INTO Animal (
     size,
     color,
     gender,
-    bithDate,
+    birthDate,
     sterilized,
     health,
     idAnimalShelter )
@@ -442,7 +451,7 @@ VALUES
     1),
 
     (2,
-    'Gulias',
+    'Golias',
     2019-04-01,
     'large',
     'black',
@@ -457,10 +466,10 @@ VALUES
     2018-09-01,
     'large',
     '',
-    'female',
+    'male',
     2018-01-01,
     1,
-    'FIV',
+    'obesity',
     1),
 
     (4,
@@ -482,7 +491,7 @@ VALUES
     'female',
     2012-01-22,
     1,
-    'leucemia',
+    'FEL',
     1),
 
     (6,
@@ -595,6 +604,18 @@ VALUES
     '',
     2);
 
+
+INSERT INTO Adoption (
+    idAdopter,
+    idAnimal,
+    adoptionDate )
+
+VALUES
+    (11,1,2019-03-11),
+    (8, 10, 2019-03-11),
+    (9, 15, 2017-05-01),
+    (10, 3, 2019-01-09);
+   
 
 INSERT INTO AnimalVet (
     idAnimal,
