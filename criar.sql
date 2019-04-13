@@ -18,27 +18,27 @@ DROP TABLE IF EXISTS Guardian;
 
 CREATE TABLE Organization (
 	idOrganization 		integer PRIMARY KEY,
-	name		   		text,
-	street		   		text,
-	addressDetails		text,
+	name		   		text NOT NULL,
+	street		   		text NOT NULL,
+	addressDetails		text NOT NULL,
 	postalCodeRegion 	text NOT NULL CHECK(length(postalCodeRegion)= 4),
 	postalCodeCity	 	text NOT NULL CHECK(length(postalCodeCity)= 3),
 	phone			 	text UNIQUE NOT NULL CHECK(length(phone) = 9),
 	nif				 	text UNIQUE NOT NULL CHECK(length(nif)= 9),
-	foundationDate   	date
+	foundationDate   	date NOT NULL
 );
 
 
 CREATE TABLE Vet (
 	idVet 				integer PRIMARY KEY,
 	name		   		text NOT NULL,
-	street		  	 	text,
-	addressDetails		text,
+	street		  	 	text NOT NULL,
+	addressDetails		text NOT NULL,
 	postalCodeRegion 	text NOT NULL CHECK(length(postalCodeRegion)= 4),
 	postalCodeCity	 	text NOT NULL CHECK(length(postalCodeCity)= 3),
 	phone			 	text UNIQUE NOT NULL CHECK(length(phone) = 9),
-	prices			 	real CHECK(prices > 0),
-	discounts   	 	real CHECK(discounts >= 0) --applicable to contributors
+	prices			 	real NOT NULL CHECK(prices > 0),
+	discounts   	 	real NOT NULL CHECK(discounts >= 0) --applicable to contributors
 );
 
 
@@ -53,8 +53,8 @@ CREATE TABLE Person (
 	name		  	 	text NOT NULL,
 	cc 			   		text UNIQUE NOT NULL CHECK(length(cc)= 12),
 	gender			 	text CHECK(gender = 'female' or gender = 'male'),
-	street		   		text,
-	addressDetails		text,
+	street		   		text NOT NULL,
+	addressDetails		text NOT NULL,
 	postalCodeRegion 	text NOT NULL CHECK(length(postalCodeRegion)= 4),
 	postalCodeCity	 	text NOT NULL CHECK(length(postalCodeCity)= 3),
 	phone			 	text UNIQUE NOT NULL CHECK(length(phone) = 9),
@@ -64,11 +64,11 @@ CREATE TABLE Person (
 
 CREATE TABLE Contributor (
 	idPerson			integer REFERENCES Person,
-	idContributor		integer UNIQUE,
+	idContributor		integer UNIQUE NOT NULL,
 	job 			   	text,
 	nif				   	text UNIQUE NOT NULL CHECK(length(nif)= 9),
-	associationDate    	date,
-	lastAnnuityPayment 	date,
+	associationDate    	date NOT NULL,
+	lastAnnuityPayment 	date NOT NULL,
 	CHECK(lastAnnuityPayment >= associationDate)
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE Volunteer (
 
 CREATE TABLE WorkArea (
 	idWorkArea 			integer PRIMARY KEY,
-	name 				text
+	name 				text NOT NULL
 );
 
 
@@ -93,7 +93,7 @@ CREATE TABLE Adopter (
 CREATE TABLE Adoption (
 	idPerson 			integer REFERENCES Person,
 	idAnimal 			integer REFERENCES Animal,
-	adoptionDate		date
+	adoptionDate		date NOT NULL
 );
 
 CREATE TABLE OrganizationContributor (
@@ -105,7 +105,7 @@ CREATE TABLE OrganizationContributor (
 CREATE TABLE Donation (
 	idDonation 			real PRIMARY KEY,
 	type		    	text,
-	amount				real,
+	amount				real NOT NULL,
 	frequency			integer,
 	idOrganization 		integer REFERENCES Organization,
 	idPerson 			integer REFERENCES Person,
@@ -115,9 +115,9 @@ CREATE TABLE Donation (
 
 CREATE TABLE AnimalShelter (
 	idAnimalShelter	 	integer PRIMARY KEY,
-	Animaltype			text,
-	street				text,
-	addressDetails		text,
+	Animaltype			text NOT NULL,
+	street				text NOT NULL,
+	addressDetails		text NOT NULL,
 	postalCodeRegion 	text NOT NULL CHECK(length(postalCodeRegion)= 4),
 	postalCodeCity   	text NOT NULL CHECK(length(postalCodeCity)= 3),
 	phone				text UNIQUE NOT NULL CHECK(length(phone) = 9),
@@ -134,13 +134,13 @@ CREATE TABLE AnimalShelterVolunteerWorkArea (
 
 CREATE TABLE Animal (
 	idAnimal 			integer PRIMARY KEY,
-	name 				text,
+	name 				text NOT NULL,
 	arrivaldate 		date,
 	size 				text CHECK(size = 'large' or size = 'medium' or size = 'small'),
 	color 				text,
 	gender 				text CHECK(gender = 'female' or gender = 'male'),
 	birthDate 			date,
-	sterilized			boolean,
+	sterilized			boolean NOT NULL,
 	health				text,
 	idAnimalShelter 	integer REFERENCES AnimalShelter
 	);
@@ -154,5 +154,5 @@ CREATE TABLE AnimalVet (
 CREATE TABLE Guardian (
 	idAnimal 			integer	REFERENCES Animal,
 	idPerson			integer REFERENCES Person,
-	monthlyAllowance	real CHECK (monthlyAllowance > 0)
+	monthlyAllowance	real NOT NULL CHECK (monthlyAllowance > 0)
 );
