@@ -69,6 +69,7 @@ CREATE TABLE Contributor (
 	nif				   	text UNIQUE NOT NULL CHECK(length(nif)= 9),
 	associationDate    	date NOT NULL,
 	lastAnnuityPayment 	date NOT NULL,
+	annuityAmount		real NOT NULL CHECK(annuityAmount > 0),
 	CHECK(lastAnnuityPayment >= associationDate)
 );
 
@@ -135,7 +136,7 @@ CREATE TABLE AnimalShelterVolunteerWorkArea (
 CREATE TABLE Animal (
 	idAnimal 			integer PRIMARY KEY,
 	name 				text NOT NULL,
-	arrivaldate 		date,
+	arrivaldate 		date NOT NULL,
 	size 				text CHECK(size = 'large' or size = 'medium' or size = 'small'),
 	color 				text,
 	gender 				text CHECK(gender = 'female' or gender = 'male'),
