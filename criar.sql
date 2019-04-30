@@ -88,7 +88,7 @@ CREATE TABLE WorkArea (
 
 CREATE TABLE Adopter (
 	idPerson 			integer REFERENCES Person,
-	nif					text UNIQUE NOT NULL CHECK(length(nif)= 9)
+	nif					text UNIQUE NOT NULL CHECK(length(nif) = 9)
 );
 
 CREATE TABLE Adoption (
