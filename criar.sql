@@ -116,7 +116,7 @@ CREATE TABLE Donation (
 
 CREATE TABLE AnimalShelter (
 	idAnimalShelter	 	integer PRIMARY KEY,
-	Animaltype			text NOT NULL,
+	animalType			text NOT NULL,
 	street				text NOT NULL,
 	addressDetails		text NOT NULL,
 	postalCodeRegion 	text NOT NULL CHECK(length(postalCodeRegion)= 4),

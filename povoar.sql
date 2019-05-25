@@ -997,7 +997,7 @@ VALUES
 
 INSERT INTO AnimalShelter (
     idAnimalShelter,
-    AnimalType,
+    animalType,
     street,
     addressDetails,
     postalCodeRegion,
@@ -1528,9 +1528,10 @@ VALUES
     (20, 39, '2019-01-19'),
     (26, 17, '2017-05-01'),
     (33, 35, '2018-10-23'),
-    (35, 21, '2018-08-18'),
+    (10, 8, '2018-12-21'),
     (30, 24, '2015-01-30'),
-    (10, 8, '2017-11-21'
+    (10, 8, '2017-11-21'),
+    (35, 21, '2018-08-18'
 );
    
 
