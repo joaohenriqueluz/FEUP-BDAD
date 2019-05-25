@@ -3,9 +3,8 @@
 .nullvalue	NULL
 .width auto auto auto
 
--- shelters in which weekly hours spent 
-
-SELECT name,COUNT(*)
+-- total weekly hours by work area for each shelter 
+SELECT *, SUM(weeklyHours) AS totalWeeklyHours
       FROM WorkArea NATURAL JOIN AnimalShelterVolunteerWorkArea NATURAL JOIN Volunteer
       GROUP BY idWorkArea
-      ORDER BY weeklyHours; 
+      ORDER BY SUM(weeklyHours));
