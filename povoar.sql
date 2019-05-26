@@ -46,7 +46,7 @@ VALUES
     20),
 
     (
-    'Clinica D.Pedro V',
+    'Consultório Veterinário D. Pedro V',
     'Rua D. Pedro V',
     '10 - R/C',
     4400,
