@@ -3,7 +3,14 @@
 .nullvalue	NULL
 .width auto auto auto
 
-SELECT *  FROM adopter;
+SELECT * FROM Adopter;
 
-INSERT INTO adopter VALUES (40, "011224013");
-INSERT INTO adopter VALUES (2, "911463213");
+INSERT INTO Adopter
+VALUES
+    (40, "011224013");
+
+INSERT INTO Adopter
+VALUES
+    (2, "911463213");
+
+SELECT * FROM Adopter;

@@ -1,4 +1,4 @@
--- 
+-- guarantees that every adopter added is a contributor
 CREATE TRIGGER IF NOT EXISTS X1
 BEFORE INSERT ON Adopter
 WHEN NOT EXISTS

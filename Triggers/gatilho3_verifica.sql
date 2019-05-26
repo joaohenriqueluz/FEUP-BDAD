@@ -5,6 +5,12 @@
 
 SELECT * FROM OrganizationVet;
 
-INSERT INTO OrganizationVet VALUES (1, 5);
+INSERT INTO OrganizationVet
+VALUES
+    (1, 5);
 
-INSERT INTO OrganizationVet VALUES (1, 4);
+INSERT INTO OrganizationVet
+VALUES
+    (1, 4);
+
+SELECT * FROM OrganizationVet;

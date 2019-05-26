@@ -1,3 +1,4 @@
+-- prevents person from becoming guardian of an already guarded/adopted animal
 CREATE TRIGGER IF NOT EXISTS X2
 BEFORE INSERT ON Guardian
 WHEN EXISTS (SELECT idAnimal
