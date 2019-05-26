@@ -7,6 +7,9 @@
 SELECT idAnimal AS ID, name, health, arrivalDate 
 FROM Animal 
 WHERE arrivalDate < date("now", "-1 years") 
-    and not exists(SELECT * FROM Adoption WHERE Animal.idAnimal = Adoption.idAnimal)
-    and health != ''
+    AND not exists
+       (SELECT *
+        FROM Adoption
+        WHERE Animal.idAnimal = Adoption.idAnimal)
+    AND health != ''
 ORDER BY arrivalDate;
