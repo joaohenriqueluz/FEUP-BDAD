@@ -38,13 +38,14 @@ CREATE TABLE Vet (
 	postalCodeCity	 	text NOT NULL CHECK(length(postalCodeCity)= 3),
 	phone			 	text UNIQUE NOT NULL CHECK(length(phone) = 9),
 	prices			 	real NOT NULL CHECK(prices > 0),
-	discounts   	 	real NOT NULL CHECK(discounts >= 0) --applicable to contributors
+	discounts   	 	real NOT NULL CHECK(discounts >= 0) -- applicable to contributors
 );
 
 
 CREATE TABLE OrganizationVet (
 	idOrganization 		integer REFERENCES Organization,
-	idVet 				integer REFERENCES Vet
+	idVet 				integer REFERENCES Vet,
+	PRIMARY KEY(idOrganization,idVet)
 );
 
 
@@ -64,7 +65,7 @@ CREATE TABLE Person (
 
 CREATE TABLE Contributor (
 	idPerson			integer REFERENCES Person,
-	idContributor		integer UNIQUE NOT NULL,
+	idContributor		integer PRIMARY KEY,
 	job 			   	text,
 	nif				   	text UNIQUE NOT NULL CHECK(length(nif)= 9),
 	associationDate    	date NOT NULL,
@@ -75,7 +76,7 @@ CREATE TABLE Contributor (
 
 
 CREATE TABLE Volunteer (
-	idPerson 			integer REFERENCES Person,
+	idPerson 			integer REFERENCES Person PRIMARY KEY,
 	weeklyHours			integer CHECK(weeklyHours > 0)
 );
 
@@ -87,20 +88,24 @@ CREATE TABLE WorkArea (
 
 
 CREATE TABLE Adopter (
-	idPerson 			integer REFERENCES Person,
+	idPerson 			integer REFERENCES Person PRIMARY KEY,
 	nif					text UNIQUE NOT NULL CHECK(length(nif) = 9)
 );
+
 
 CREATE TABLE Adoption (
 	idPerson 			integer REFERENCES Person,
 	idAnimal 			integer REFERENCES Animal,
-	adoptionDate		date NOT NULL
+	adoptionDate		date NOT NULL,
+	PRIMARY KEY(idPerson, idAnimal)
 );
+
 
 CREATE TABLE OrganizationContributor (
 	idOrganization 		integer REFERENCES Organization,
-	idPerson 			integer REFERENCES Person
-	);
+	idPerson 			integer REFERENCES Person,
+	PRIMARY KEY(idOrganization, idPerson)
+);
 
 
 CREATE TABLE Donation (
@@ -146,14 +151,18 @@ CREATE TABLE Animal (
 	idAnimalShelter 	integer REFERENCES AnimalShelter
 	);
 
+
 CREATE TABLE AnimalVet (
 	idAnimal 			integer	REFERENCES Animal,
-	idVet				integer REFERENCES Vet
+	idVet				integer REFERENCES Vet,
+	PRIMARY KEY(idAnimal, idVet)
+
 );
 
 
 CREATE TABLE Guardian (
 	idAnimal 			integer	REFERENCES Animal,
 	idPerson			integer REFERENCES Person,
-	monthlyAllowance	real NOT NULL CHECK (monthlyAllowance > 0)
+	monthlyAllowance	real NOT NULL CHECK (monthlyAllowance > 0),
+	PRIMARY KEY(idAnimal, idPerson)
 );

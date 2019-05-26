@@ -1,15 +1,13 @@
 .mode	columns
 .headers	on
 .nullvalue	NULL
-.width 5 10 8 10 16
+.width 8 11 12
 
--- number of adopters that became contributors just for the year of the adoption
-SELECT *
-FROM OrganizationContributor, Contributor, Adoption, Person, Animal
-WHERE OrganizationContributor.idPerson = Contributor.idPerson
-    --AND Adoption.idPerson = Person.idPerson
-    AND Adoption.idPerson = Contributor.idPerson
-    AND Adoption.idAnimal = Animal.idAnimal
-    AND adoptionDate > date("now", "-1 year")
-    --AND health != ''
---ORDER BY Vet.idVet;
+-- adopters that became contributors after the last adoption whose installment was not paid
+SELECT Adoption.idPerson, lastPayment, adoptionDate
+FROM Adoption NATURAL JOIN 
+       (SELECT idContributor, idPerson, nif AS NIF, phone, lastAnnuityPayment AS lastPayment, associationDate
+        FROM Person NATURAL JOIN Contributor
+        WHERE lastAnnuityPayment < date("now", "-365 day")
+        ORDER BY lastAnnuityPayment)
+    WHERE adoptionDate < associationDate;
